@@ -1,0 +1,89 @@
+<!--  
+    <h1>welocme to movie app</h1>
+<div>
+    <form>
+        Enter Title:<input type="text" [(ngModel)]="movie.title" name= "title"><br/>
+        Enter Lead Actor:<input type="text" [(ngModel)]="movie.leadActor" name= "leadActor"><br/>
+        <button (click)= "addMovie()">Add movie</button>
+     </form>
+</div>
+
+
+<div>
+    <table border="1">
+<tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>LeadActor</th>
+    <th>Actions</th>
+</tr>
+
+<tr *ngFor = "let movie of movies">
+
+    <td>{{movie.id}}</td>
+    <td>{{movie.title}}</td>
+    <td>{{movie.leadActor}}</td>
+    <td><button (click)="getMovieById(movie.id)">Update</button> | <button (click)="deleteMovie(movie.id)">Delete</button></td>
+
+</tr>
+    </table>
+</div>
+
+-->
+
+<div class="container">
+        <div (movieObj) = 'random($event)'>
+            <form class="form-horizontal">
+                <input type = "hidden" [(ngModel)] = "movie.id" name = "id" /> 
+                
+                <div style="width:800px; margin:0 auto; color: green; text-decoration:underline;">
+                        <label class="control-label col-sm-2"></label>
+                        <div>
+                                <h2 >THE MOVIES MANAGEMENT SYSTEM</h2><br/><br/>
+                        </div>    
+                    </div><div class="form-group">
+                    <label class="control-label col-sm-2">Movie Title</label>
+                    <div class="col-sm-8">
+                        <input type = "text" [(ngModel)] = "movie.title" name = "title" class="form-control" />
+                    </div>    
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Movie Lead Actor</label>
+                    <div class="col-sm-8">
+                            <input type = "text" [(ngModel)] = "movie.leadActor" name = "leadActor" class="form-control" />
+                    </div>    
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8">
+                        <button (click) = "addMovie()" class = "btn btn-primary">ADD / UPDATE</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div>
+            <table class = "table table-striped table-bordered">
+                <tr style = "background: rgb(192, 228, 159);">
+                    <th>ID</th>
+                    <th>TITLE</th>
+                    <th>LEAD ACTOR</th>
+                    <th>ACTIONS</th>
+                </tr>
+                <tr *ngFor = "let movie of movies">
+                    <td>{{movie.id}}</td>
+                    <td>{{movie.title}}</td>
+                    <td>{{movie.leadActor}}</td>
+                    <td>
+                        <button (click) = "getMovieById(movie.id)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span></button>      
+                        &nbsp;|&nbsp;
+                        <button (click) = "deleteMovie(movie.id)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"></span></button>
+                    </td>
+                </tr>
+                <tr *ngIf = "!movies">
+                    <td colspan = "3">Loading... Please wait....</td>
+                </tr>
+                <tr *ngIf = "movies && movies.length == 0">
+                    <td colspan = "4">No records found!</td>
+                </tr>
+            </table>
+        </div>
+    </div>
